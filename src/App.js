@@ -9,7 +9,11 @@ import Home from './Components/Home/Home';
 import PageNotFound from './Components/PageNotFound/PageNotFound';
 import Login from './Components/Login/Login';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
-import DetailsInfo from './Components/DetailsInfo/DetailsInfo';
+import Register from './Components/Register/Register';
+import RegisterList from './Components/RegisterList/RegisterList';
+import Admin from './Components/Admin/Admin';
+import Donations from './Components/Donations/Donations';
+import Events from './Components/Events/Events';
 
 export const UserContext = createContext();
 
@@ -34,9 +38,21 @@ function App() {
           <Route path='/login'>
             <Login/>
           </Route>
-          <PrivateRoute path="/detailsInfo">
-            <DetailsInfo/>
+          <PrivateRoute path="/volunteer/:volunteerKey">
+            <Register/>
           </PrivateRoute>
+          <PrivateRoute path="/registerList">
+            <RegisterList/>
+          </PrivateRoute>
+          <PrivateRoute path="/admin">
+            <Admin/>
+          </PrivateRoute>
+          <Route path='/donation'>
+            <Donations/>
+          </Route>
+          <Route path='/events'>
+            <Events/>
+          </Route>
           <Route path='*'>
             <PageNotFound/>
           </Route>

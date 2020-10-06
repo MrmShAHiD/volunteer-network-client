@@ -90,7 +90,7 @@ const fakeData = [
         photo: 'https://i.ibb.co/r39DBxg/babySit.png'
     },
     {
-        name: 'collect stuffed animals',
+        name: 'Collect stuffed animals',
         key: 19,
         photo: 'https://i.ibb.co/wC2fMDZ/stuffed-Animals.png'
     },

@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import { Grid } from '@material-ui/core';
 import * as firebase from "firebase/app";
-import "firebase/auth";
-import { UserContext } from '../../App';
-import { Button, FormControl, Nav, Navbar } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import VolunteeringActivity from '../VolunteeringActivity/VolunteeringActivity';
-import {Grid} from '@material-ui/core';
+import { UserContext } from '../../App';
+import RegisterInfo from '../RegisterInfo/RegisterInfo';
 
-const Home = () => {
+const RegisterList = () => {
     const {user, setUser} = useContext(UserContext);
     const { name, isSignedIn } = user;
     const userSignOut = () => {
@@ -26,13 +25,15 @@ const Home = () => {
             setUser(res);
         })
     }
+    const [register, setRegister] = useState([]);
 
-    const [volunteer, setVolunteer] = useState([]);
     useEffect(() => {
-        fetch('http://peaceful-scrubland-04513.herokuapp.com/volunteerActivity')
+        fetch(`http://peaceful-scrubland-04513.herokuapp.com/register/${user.email}`)
         .then(res => res.json())
-        .then(data => setVolunteer(data))
-    }, [])
+        .then(data => {
+            setRegister(data);
+        })
+    },[user.email, register])
 
     return (
         <div>
@@ -57,21 +58,13 @@ const Home = () => {
                 </Navbar.Collapse>
             </Navbar>
 
-            <div style={{padding:'40px'}} className="text-center mt-5 mb-5">
-                <h1 style={{textAlign:'center'}}>I GROW BY HELPING PEOPLE IN NEED.</h1>
-                <div  style={{textAlign:'center'}}>
-                    <FormControl style={{padding:'10px'}} type="text" placeholder="Search" className="mr-sm-6 w-25" />
-                    <Button style={{padding:'10px', marginLeft:'10px', borderRadius:'5px'}}>Search</Button>
-                </div>
-            </div>
-
-            <Grid style={{padding:'20px'}} container direction="row" justify="center">
+            <Grid container direction="row">
                 {
-                    volunteer.map(volunteer => <VolunteeringActivity volunteer={volunteer} key={volunteer._id}></VolunteeringActivity>)
+                    register.map((register => <RegisterInfo registerList={register}  key={register._id}></RegisterInfo>))
                 }
             </Grid>
         </div>
     );
 };
 
-export default Home;
+export default RegisterList;

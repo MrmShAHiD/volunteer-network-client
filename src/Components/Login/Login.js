@@ -41,13 +41,13 @@ const Login = () => {
     };
 
     return (
-        <div className="container">
+        <div style={{textAlign: 'center', marginTop:'50px'}} className="container">
             <div>
                 <Link to="/">
                     <img style={{height:'80px'}} src="https://i.ibb.co/64hMJpY/Group-1329.png" alt=""/>
                 </Link>
             </div>
-            <div>
+            <div style={{marginTop:'60px'}}>
                 <h2>Log In</h2>
                 <Button onClick={handleSignInWithGoogle} style={{padding:'15px', fontSize:'20px', border: '1px solid grey', borderRadius:'15px'}}><img style={{height:'30px'}} src="https://i.ibb.co/VHS2GwS/google.png" alt=""/><span style={{marginLeft:'15px'}}>Sign in with Google</span></Button>
             </div>
